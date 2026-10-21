@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vision Caption &amp; Text Analysis</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>🔍 Vision Caption &amp; Text Analysis</h1>
+    <p class="sub">Powered by a Hugging Face Space (ZeroGPU) · <a id="space-link" href="#" target="_blank" rel="noopener">open Space</a></p>
+  </header>
+
+  <main>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-panel="panel-image">🖼️ Image Caption</button>
+      <button class="tab" role="tab" aria-selected="false" data-panel="panel-text">📝 Text Analysis</button>
+    </div>
+
+    <section id="panel-image" class="panel" role="tabpanel">
+      <label class="drop">
+        <input type="file" id="image-input" accept="image/*" />
+        <span>Click to choose an image (JPG, PNG, WEBP, GIF, BMP · max 10 MB)</span>
+      </label>
+      <img id="preview" alt="Preview" hidden />
+      <button id="caption-btn" class="primary">Generate caption</button>
+      <div id="caption-result" aria-live="polite"></div>
+    </section>
+
+    <section id="panel-text" class="panel" role="tabpanel" hidden>
+      <textarea id="text-input" rows="7" maxlength="5000" placeholder="Type or paste text to analyze…"></textarea>
+      <div class="row"><span id="char-count">0 / 5000</span>
+        <span id="examples">Try:
+          <button class="link" data-example="I absolutely love this new phone, the camera is stunning!">positive</button>
+          <button class="link" data-example="The package arrived on Tuesday.">neutral</button>
+          <button class="link" data-example="Worst support experience ever. I'm furious and want a refund.">negative</button>
+        </span>
+      </div>
+      <button id="analyze-btn" class="primary">Analyze text</button>
+      <div id="text-result" aria-live="polite"></div>
+    </section>
+
+    <details class="settings">
+      <summary>Settings</summary>
+      <label>Hugging Face Space ID <input id="space-id" placeholder="username/vision-text-poc" /></label>
+      <button id="save-space">Save</button>
+      <p class="hint">No token is stored in this page. The Space is public; your HF token lives only in GitHub/HF secret stores.</p>
+    </details>
+
+    <div id="status" class="status" role="status"></div>
+  </main>
+
+  <footer>Models: BLIP image captioning · Twitter-RoBERTa sentiment · DistilRoBERTa emotion</footer>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
